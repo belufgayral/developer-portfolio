@@ -1,14 +1,18 @@
 "use client";
 
 import { useState } from "react";
+import { portfolioData } from "@/data/portfolioData";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+
+  const { form } = portfolioData.contact;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectType: "fullstack",
+    projectType: form.projectTypeOptions[0]?.value || "fullstack",
     message: "",
   });
 
@@ -22,7 +26,7 @@ export default function ContactForm() {
       setFormData({
         name: "",
         email: "",
-        projectType: "fullstack",
+        projectType: form.projectTypeOptions[0]?.value || "fullstack",
         message: "",
       });
 
@@ -42,7 +46,7 @@ export default function ContactForm() {
               className="block font-label-code text-label-code text-on-surface uppercase tracking-wider"
               htmlFor="name"
             >
-              Nombre completo *
+              {form.nameLabel}
             </label>
             <input
               id="name"
@@ -52,7 +56,7 @@ export default function ContactForm() {
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              placeholder="Ej. Martín Soler"
+              placeholder={form.namePlaceholder}
               className="w-full px-4 py-2.5 rounded-lg bg-surface-container-lowest border border-outline-variant/40 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-all"
             />
           </div>
@@ -63,7 +67,7 @@ export default function ContactForm() {
               className="block font-label-code text-label-code text-on-surface uppercase tracking-wider"
               htmlFor="email"
             >
-              Correo electrónico *
+              {form.emailLabel}
             </label>
             <input
               id="email"
@@ -73,7 +77,7 @@ export default function ContactForm() {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              placeholder="martin@empresa.com"
+              placeholder={form.emailPlaceholder}
               className="w-full px-4 py-2.5 rounded-lg bg-surface-container-lowest border border-outline-variant/40 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-all"
             />
           </div>
@@ -85,7 +89,7 @@ export default function ContactForm() {
             className="block font-label-code text-label-code text-on-surface uppercase tracking-wider"
             htmlFor="project-type"
           >
-            Tipo de Proyecto / Asunto
+            {form.projectTypeLabel}
           </label>
           <select
             id="project-type"
@@ -95,15 +99,11 @@ export default function ContactForm() {
             }
             className="w-full px-4 py-2.5 rounded-lg bg-surface-container-lowest border border-outline-variant/40 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-all"
           >
-            <option value="fullstack">Desarrollo Web Fullstack Completo</option>
-            <option value="frontend">
-              Frontend Engineering &amp; UI Architecture
-            </option>
-            <option value="design-system">
-              Sistemas de Diseño &amp; Auditoría UI/UX
-            </option>
-            <option value="consulting">Consultoría Técnica / Rol Remoto</option>
-            <option value="other">Otra consulta</option>
+            {form.projectTypeOptions.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -113,7 +113,7 @@ export default function ContactForm() {
             className="block font-label-code text-label-code text-on-surface uppercase tracking-wider"
             htmlFor="message"
           >
-            Detalles del mensaje *
+            {form.messageLabel}
           </label>
           <textarea
             id="message"
@@ -123,7 +123,7 @@ export default function ContactForm() {
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
             }
-            placeholder="Describe los objetivos clave, cronograma estimado o detalles sobre tu equipo..."
+            placeholder={form.messagePlaceholder}
             className="w-full px-4 py-2.5 rounded-lg bg-surface-container-lowest border border-outline-variant/40 text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary font-body-md text-body-md transition-all resize-none"
           />
         </div>
@@ -140,10 +140,10 @@ export default function ContactForm() {
         >
           <span className="font-code-md text-code-md font-semibold">
             {isSubmitting
-              ? "Transmitiendo paquete..."
+              ? form.submitButton.submitting
               : isSuccess
-              ? "Mensaje Enviado"
-              : "Enviar mensaje"}
+              ? form.submitButton.success
+              : form.submitButton.idle}
           </span>
           <span
             className={`material-symbols-outlined text-[18px] ${
@@ -157,11 +157,10 @@ export default function ContactForm() {
         {/* Feedback message container */}
         {isSuccess && (
           <div className="p-3 rounded-lg bg-surface-container border border-secondary/40 text-secondary font-code-md text-code-md text-center animate-fadeIn">
-            ✓ Mensaje transmitido con éxito. Te responderé en menos de 24 horas laborables.
+            {form.feedbackSuccess}
           </div>
         )}
       </form>
     </div>
   );
 }
-

@@ -5,10 +5,22 @@ import { portfolioData } from "@/data/portfolioData";
 
 export default function Hero() {
   const [imgError, setImgError] = useState(false);
+  const {
+    author,
+    headline,
+    availability,
+    bio,
+    buttons,
+    avatar,
+    location,
+    hero,
+  } = portfolioData;
+
+  const fullHeadline = `${headline.body} ${headline.highlight} ${headline.end}`;
 
   return (
     <section
-      className="relative max-w-7xl mx-auto px-6 md:px-12 pt-16 md:pt-24 pb-20 md:pb-28"
+      className="relative max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-20 md:pb-28"
       id="home"
     >
       {/* Live Availability Tag */}
@@ -18,10 +30,10 @@ export default function Hero() {
           <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary" />
         </span>
         <span className="font-label-code text-label-code tracking-wider text-secondary uppercase font-semibold">
-          {portfolioData.availability.status}
+          {availability.status}
         </span>
         <span className="text-outline font-label-code text-label-code">
-          | {portfolioData.availability.scope}
+          | {availability.scope}
         </span>
       </div>
 
@@ -29,18 +41,16 @@ export default function Hero() {
         {/* Hero Text & CTA Block (7 cols) */}
         <div className="lg:col-span-7 flex flex-col items-start space-y-6">
           <h1 className="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface tracking-tight leading-tight">
-            Desarrolladora{" "}
-            <span className="text-primary italic font-light">Fullstack</span> &amp;{" "}
-            Diseñadora Web
+            {headline.body}{" "}
+            <span className="text-primary italic font-light">
+              {headline.highlight}
+            </span>{" "}
+            {headline.end}
           </h1>
           <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
-            Creo experiencias digitales memorables fusionando código escalable y
-            arquitectura limpia con diseño centrado en el usuario. +5 años
-            materializando interfaces de alto rendimiento con{" "}
-            <span className="text-on-surface font-medium">
-              React, TypeScript, Node.js, Tailwind
-            </span>{" "}
-            y sistemas de diseño meticulosos.
+            {bio.body}{" "}
+            <span className="text-on-surface font-medium">{bio.tech}</span>{" "}
+            {bio.end}
           </p>
 
           {/* Action Buttons Group */}
@@ -49,7 +59,7 @@ export default function Hero() {
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-on-surface text-background font-medium hover:bg-white transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/5"
               href="#projects"
             >
-              <span>Ver proyectos destacados</span>
+              <span>{buttons.projects}</span>
               <span className="material-symbols-outlined text-[18px]">
                 arrow_downward
               </span>
@@ -61,7 +71,7 @@ export default function Hero() {
               <span className="material-symbols-outlined text-[18px]">
                 description
               </span>
-              <span>Descargar CV</span>
+              <span>{buttons.cv}</span>
             </a>
           </div>
         </div>
@@ -78,9 +88,9 @@ export default function Hero() {
                 {!imgError ? (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    alt={`${portfolioData.author} — ${portfolioData.headline}`}
+                    alt={`${author} — ${fullHeadline}`}
                     className="w-full h-full object-cover object-center filter grayscale-[15%] hover:grayscale-0 transition-all duration-500 hover:scale-[1.02]"
-                    src={portfolioData.avatar}
+                    src={avatar}
                     onError={() => setImgError(true)}
                   />
                 ) : (
@@ -89,10 +99,10 @@ export default function Hero() {
                       person
                     </span>
                     <span className="font-code-md text-code-md text-on-surface">
-                      {portfolioData.author}
+                      {author}
                     </span>
                     <span className="font-label-code text-label-code text-outline">
-                      [Foto de perfil placeholder]
+                      {hero.placeholderAvatarText}
                     </span>
                   </div>
                 )}
@@ -106,11 +116,11 @@ export default function Hero() {
                     terminal
                   </span>
                   <span className="font-code-md text-code-md text-on-surface font-medium">
-                    {portfolioData.author}
+                    {author}
                   </span>
                 </div>
                 <span className="font-label-code text-label-code text-outline">
-                  {portfolioData.locationShort}
+                  {location.short}
                 </span>
               </div>
             </div>
@@ -120,4 +130,3 @@ export default function Hero() {
     </section>
   );
 }
-

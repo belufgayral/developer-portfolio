@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, JetBrains_Mono } from "next/font/google";
+import { portfolioData } from "@/data/portfolioData";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dev/Design | Senior Fullstack Engineer & Designer",
-  description: "Portafolio profesional: interfaces de alto rendimiento con React, TypeScript, Next.js y arquitectura limpia.",
+  title: portfolioData.meta.title,
+  description: portfolioData.meta.description,
 };
 
 export default function RootLayout({

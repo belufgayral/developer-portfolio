@@ -8,17 +8,22 @@ export default function TerminalStatus() {
       <div className="p-3 bg-surface-container-lowest rounded-lg border border-outline-variant/20 flex flex-wrap items-center justify-between gap-3 text-label-code font-label-code text-outline">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-secondary" />
-          <span>SYSTEM // STATUS: {telemetry.status}</span>
+          <span>
+            {telemetry.statusPrefix} {telemetry.status}
+          </span>
           <span className="hidden sm:inline text-outline-variant">
-            | NODE_ENV: {telemetry.nodeEnv}
+            {telemetry.envPrefix} {telemetry.nodeEnv}
           </span>
         </div>
         <div className="flex items-center gap-4">
-          <span>LATENCY: {telemetry.latency}</span>
-          <span>BUILD: {telemetry.build}</span>
+          <span>
+            {telemetry.latencyPrefix} {telemetry.latency}
+          </span>
+          <span>
+            {telemetry.buildPrefix} {telemetry.build}
+          </span>
         </div>
       </div>
     </div>
   );
 }
-

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Project } from "@/data/portfolioData";
+import { Project, portfolioData } from "@/data/portfolioData";
 
 interface ProjectCardProps {
   project: Project;
@@ -9,6 +9,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [imgError, setImgError] = useState(false);
+  const { projectLabels } = portfolioData;
 
   return (
     <article className="project-card group bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden hover:border-outline-variant/70 transition-all duration-300 flex flex-col">
@@ -20,7 +21,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             src={project.image}
             alt={project.alt}
             onError={() => setImgError(true)}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90"
+            className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-90"
           />
         ) : (
           <div className="w-full h-full flex flex-col items-center justify-center bg-surface-container-high text-outline gap-2 p-6 text-center">
@@ -31,7 +32,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               {project.title}
             </span>
             <span className="font-label-code text-label-code text-outline">
-              [Preview placeholder]
+              {projectLabels.placeholderImageText}
             </span>
           </div>
         )}
@@ -64,13 +65,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           <details className="group/detail text-on-surface-variant font-body-md text-body-md mb-6 transition-all duration-300">
             <summary className="cursor-pointer list-none inline-flex items-center gap-1 font-label-code text-label-code text-primary hover:underline focus:outline-none mb-3 py-1">
               <span className="group-open/detail:hidden inline-flex items-center gap-1">
-                Expandir detalles{" "}
+                {projectLabels.expandDetails}{" "}
                 <span className="material-symbols-outlined text-[16px]">
                   expand_more
                 </span>
               </span>
               <span className="hidden group-open/detail:inline-flex items-center gap-1">
-                Colapsar detalles{" "}
+                {projectLabels.collapseDetails}{" "}
                 <span className="material-symbols-outlined text-[16px]">
                   expand_less
                 </span>
@@ -83,19 +84,19 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               <div className="p-4 rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-2">
                 <p>
                   <strong className="text-on-surface font-code-md text-code-md">
-                    Desafío:
+                    {projectLabels.challenge}
                   </strong>{" "}
                   {project.details.challenge}
                 </p>
                 <p>
                   <strong className="text-on-surface font-code-md text-code-md">
-                    Arquitectura:
+                    {projectLabels.architecture}
                   </strong>{" "}
                   {project.details.architecture}
                 </p>
                 <p>
                   <strong className="text-on-surface font-code-md text-code-md">
-                    Resultados:
+                    {projectLabels.results}
                   </strong>{" "}
                   {project.details.results}
                 </p>
@@ -106,27 +107,19 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Footer links */}
         <div className="flex items-center justify-end pt-4 border-t border-outline-variant/20">
-          <div className="flex items-center gap-3">
             <a
-              className="text-on-surface-variant hover:text-on-surface transition-colors"
-              href={project.repoUrl}
-              title="Ver repositorio de código"
-            >
-              <span className="material-symbols-outlined text-[20px]">code</span>
-            </a>
-            <a
-              className="inline-flex items-center gap-1 font-label-code text-label-code text-on-surface hover:text-primary transition-colors"
+              className="inline-flex items-center gap-1 font-label-code text-label-code text-on-surface  hover:text-primary transition-colors"
               href={project.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
             >
-              <span>Demo Live</span>
+              <span>{projectLabels.demoLive}</span>
               <span className="material-symbols-outlined text-[16px]">
                 north_east
               </span>
             </a>
-          </div>
         </div>
       </div>
     </article>
   );
 }
-

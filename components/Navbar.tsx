@@ -8,12 +8,7 @@ export default function Navbar() {
   const [activeLang, setActiveLang] = useState<"es" | "en">("es");
   const [activeSection, setActiveSection] = useState<string>("home");
 
-  const navLinks = [
-    { id: "home", label: "Home" },
-    { id: "projects", label: "Projects" },
-    { id: "about", label: "About" },
-    { id: "contact", label: "Contact" },
-  ];
+  const { navigation, brand, author } = portfolioData;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +22,7 @@ export default function Navbar() {
         return;
       }
 
-      for (const link of [...navLinks].reverse()) {
+      for (const link of [...navigation.links].reverse()) {
         const element = document.getElementById(link.id);
         if (element) {
           const top = element.offsetTop;
@@ -43,7 +38,7 @@ export default function Navbar() {
     handleScroll();
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [navigation.links]);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-surface/80 dark:bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 transition-all duration-200">
@@ -52,16 +47,16 @@ export default function Navbar() {
         <a className="flex items-center gap-2 group" href="#home">
           <span className="w-2.5 h-2.5 rounded-full bg-primary inline-block transition-transform duration-300 group-hover:scale-125" />
           <span className="font-code-md text-code-md font-bold text-on-surface tracking-wider">
-            {portfolioData.brand}
+            {brand}
           </span>
           <span className="font-label-code text-label-code text-outline hidden sm:inline ml-1">
-            // {portfolioData.author}
+            // {author}
           </span>
         </a>
 
         {/* Desktop Navigation Links */}
         <nav className="hidden md:flex items-center gap-8 font-code-md text-code-md tracking-tight">
-          {navLinks.map((link) => {
+          {navigation.links.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
@@ -113,7 +108,7 @@ export default function Navbar() {
 
           {/* Trailing Terminal Icon Action */}
           <a
-            aria-label="Terminal status"
+            aria-label={navigation.terminalStatusAria}
             className="w-9 h-9 rounded border border-outline-variant/30 bg-surface-container-low/50 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-outline-variant transition-colors duration-150"
             href="#terminal-status"
           >
@@ -125,13 +120,13 @@ export default function Navbar() {
             className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-inverse-surface text-inverse-on-surface hover:bg-white font-code-md text-code-md font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm"
             href="#contact"
           >
-            <span>Get in Touch</span>
+            <span>{navigation.cta}</span>
             <span className="material-symbols-outlined text-[16px]">mail</span>
           </a>
 
           {/* Mobile Menu Toggle Button */}
           <button
-            aria-label="Toggle navigation menu"
+            aria-label={navigation.menuAria}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden w-9 h-9 flex items-center justify-center text-on-surface-variant hover:text-on-surface border border-outline-variant/30 rounded"
             type="button"
@@ -146,7 +141,7 @@ export default function Navbar() {
       {/* Mobile Dropdown Navigation */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-surface-container-lowest/95 backdrop-blur-xl border-b border-outline-variant/30 px-6 py-4 space-y-3 font-code-md text-code-md animate-fadeIn">
-          {navLinks.map((link) => {
+          {navigation.links.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <a
@@ -165,14 +160,14 @@ export default function Navbar() {
           })}
           <div className="pt-2 border-t border-outline-variant/20 flex items-center justify-between">
             <span className="text-label-code font-label-code text-outline">
-              Idioma: {activeLang.toUpperCase()}
+              {navigation.languageLabel} {activeLang.toUpperCase()}
             </span>
             <a
               onClick={() => setIsMobileMenuOpen(false)}
               className="text-label-code font-label-code text-primary underline"
               href="#contact"
             >
-              Get in Touch →
+              {navigation.cta} →
             </a>
           </div>
         </div>
