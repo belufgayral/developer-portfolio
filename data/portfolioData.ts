@@ -269,6 +269,7 @@ export const portfolioData = {
         success: "Mensaje Enviado",
       },
       feedbackSuccess: "✓ Mensaje transmitido con éxito. Te responderé en menos de 24 horas laborables.",
+      feedbackError: "✕ Hubo un problema al enviar el mensaje. Por favor, intenta de nuevo o contáctame directamente por email.",
     },
   },
 

@@ -6,6 +6,7 @@ import { portfolioData } from "@/data/portfolioData";
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const { form } = portfolioData.contact;
 
@@ -16,12 +17,27 @@ export default function ContactForm() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
+    setIsSuccess(false);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch("/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || form.feedbackError);
+      }
+
       setIsSuccess(true);
       setFormData({
         name: "",
@@ -32,8 +48,13 @@ export default function ContactForm() {
 
       setTimeout(() => {
         setIsSuccess(false);
-      }, 6000);
-    }, 1000);
+      }, 7000);
+    } catch (err: any) {
+      console.error("Error al enviar formulario:", err);
+      setErrorMessage(err.message || form.feedbackError);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -135,7 +156,7 @@ export default function ContactForm() {
           className={`w-full py-3.5 px-6 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-0.5 shadow-md shadow-primary/10 ${
             isSuccess
               ? "bg-secondary text-on-secondary"
-              : "bg-on-surface text-background hover:bg-white"
+              : "bg-on-surface text-background hover:bg-white disabled:opacity-70 disabled:cursor-not-allowed"
           }`}
         >
           <span className="font-code-md text-code-md font-semibold">
@@ -154,10 +175,17 @@ export default function ContactForm() {
           </span>
         </button>
 
-        {/* Feedback message container */}
+        {/* Success feedback message container */}
         {isSuccess && (
           <div className="p-3 rounded-lg bg-surface-container border border-secondary/40 text-secondary font-code-md text-code-md text-center animate-fadeIn">
             {form.feedbackSuccess}
+          </div>
+        )}
+
+        {/* Error feedback message container */}
+        {errorMessage && (
+          <div className="p-3 rounded-lg bg-surface-container border border-error/40 text-error font-code-md text-code-md text-center animate-fadeIn">
+            {errorMessage}
           </div>
         )}
       </form>
