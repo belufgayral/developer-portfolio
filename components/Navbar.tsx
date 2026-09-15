@@ -1,14 +1,14 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { portfolioData } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeLang, setActiveLang] = useState<"es" | "en">("es");
   const [activeSection, setActiveSection] = useState<string>("home");
 
-  const { navigation, brand, author } = portfolioData;
+  const { lang, setLang, data } = useLanguage();
+  const { navigation, brand, author } = data;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,22 +83,22 @@ export default function Navbar() {
             role="group"
           >
             <button
-              onClick={() => setActiveLang("es")}
+              onClick={() => setLang("es")}
               type="button"
-              className={`px-2.5 py-1 text-label-code font-label-code rounded-full transition-all duration-150 ${
-                activeLang === "es"
-                  ? "bg-surface-container-high text-primary border border-outline-variant/40"
+              className={`px-2.5 py-1 text-label-code font-label-code rounded-full transition-all duration-150 cursor-pointer ${
+                lang === "es"
+                  ? "bg-surface-container-high text-primary border border-outline-variant/40 font-semibold"
                   : "text-on-surface-variant hover:text-on-surface"
               }`}
             >
               ES
             </button>
             <button
-              onClick={() => setActiveLang("en")}
+              onClick={() => setLang("en")}
               type="button"
-              className={`px-2.5 py-1 text-label-code font-label-code rounded-full transition-all duration-150 ${
-                activeLang === "en"
-                  ? "bg-surface-container-high text-primary border border-outline-variant/40"
+              className={`px-2.5 py-1 text-label-code font-label-code rounded-full transition-all duration-150 cursor-pointer ${
+                lang === "en"
+                  ? "bg-surface-container-high text-primary border border-outline-variant/40 font-semibold"
                   : "text-on-surface-variant hover:text-on-surface"
               }`}
             >
@@ -128,7 +128,7 @@ export default function Navbar() {
           <button
             aria-label={navigation.menuAria}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center text-on-surface-variant hover:text-on-surface border border-outline-variant/30 rounded"
+            className="md:hidden w-9 h-9 flex items-center justify-center text-on-surface-variant hover:text-on-surface border border-outline-variant/30 rounded cursor-pointer"
             type="button"
           >
             <span className="material-symbols-outlined text-[20px]">
@@ -160,7 +160,7 @@ export default function Navbar() {
           })}
           <div className="pt-2 border-t border-outline-variant/20 flex items-center justify-between">
             <span className="text-label-code font-label-code text-outline">
-              {navigation.languageLabel} {activeLang.toUpperCase()}
+              {navigation.languageLabel} {lang.toUpperCase()}
             </span>
             <a
               onClick={() => setIsMobileMenuOpen(false)}
@@ -175,3 +175,4 @@ export default function Navbar() {
     </header>
   );
 }
+
