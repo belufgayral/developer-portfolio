@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Project, portfolioData } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
+import { Project } from "@/data/types";
 
 interface ProjectCardProps {
   project: Project;
@@ -9,7 +10,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   const [imgError, setImgError] = useState(false);
-  const { projectLabels } = portfolioData;
+  const { projectLabels } = useLanguage().data;
 
   return (
     <article className="project-card group bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden hover:border-outline-variant/70 transition-all duration-300 flex flex-col">

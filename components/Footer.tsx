@@ -1,7 +1,9 @@
-import { portfolioData } from "@/data/portfolioData";
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Footer() {
-  const { brand, footer } = portfolioData;
+  const { brand, footer } = useLanguage().data;
 
   return (
     <footer className="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20">

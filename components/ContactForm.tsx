@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { portfolioData } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const { form } = portfolioData.contact;
+  const { form } = useLanguage().data.contact;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -49,9 +49,9 @@ export default function ContactForm() {
       setTimeout(() => {
         setIsSuccess(false);
       }, 7000);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Error al enviar formulario:", err);
-      setErrorMessage(err.message || form.feedbackError);
+      setErrorMessage(err instanceof Error ? err.message : form.feedbackError);
     } finally {
       setIsSubmitting(false);
     }

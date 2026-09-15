@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { portfolioData } from "@/data/portfolioData";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Hero() {
   const [imgError, setImgError] = useState(false);
@@ -14,7 +14,7 @@ export default function Hero() {
     avatar,
     location,
     hero,
-  } = portfolioData;
+  } = useLanguage().data;
 
   const fullHeadline = `${headline.body} ${headline.highlight} ${headline.end}`;
 

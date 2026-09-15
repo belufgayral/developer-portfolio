@@ -1,7 +1,9 @@
-import { portfolioData } from "@/data/portfolioData";
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function TerminalStatus() {
-  const { telemetry } = portfolioData;
+  const { telemetry } = useLanguage().data;
 
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-12 py-4" id="terminal-status">

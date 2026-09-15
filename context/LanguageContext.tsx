@@ -5,6 +5,8 @@ import i18n, { usePortfolioTranslation } from "@/i18n/config";
 import { Language } from "@/data/types";
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const { data, lang } = usePortfolioTranslation();
+
   useEffect(() => {
     try {
       const saved = localStorage.getItem("preferred_lang") as Language | null;
@@ -15,6 +17,12 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
       // Ignorar si localStorage no está disponible
     }
   }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.title = data.meta.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", data.meta.description);
+  }, [data, lang]);
 
   return <>{children}</>;
 }

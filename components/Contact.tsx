@@ -1,8 +1,10 @@
-import { portfolioData } from "@/data/portfolioData";
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
 import ContactForm from "./ContactForm";
 
 export default function Contact() {
-  const { sections, contact, email, location, socialLinks } = portfolioData;
+  const { sections, contact, email, location, socialLinks } = useLanguage().data;
 
   return (
     <section

@@ -1,8 +1,10 @@
-import { portfolioData } from "@/data/portfolioData";
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
 import ProjectCard from "./ProjectCard";
 
 export default function Projects() {
-  const { sections, projects } = portfolioData;
+  const { sections, projects } = useLanguage().data;
 
   return (
     <section

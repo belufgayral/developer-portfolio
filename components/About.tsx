@@ -1,7 +1,9 @@
-import { portfolioData } from "@/data/portfolioData";
+"use client";
+
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function About() {
-  const { sections, manifesto, skillCategories } = portfolioData;
+  const { sections, manifesto, skillCategories } = useLanguage().data;
 
   return (
     <section
