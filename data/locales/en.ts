@@ -81,7 +81,7 @@ export const en: PortfolioData = {
     results: "Results:",
     repoTitle: "View code repository",
     demoLive: "Live Demo",
-    placeholderImageText: "[Preview placeholder]",
+    placeholderImageText: "Coming soon! Project under construction.",
   },
 
   socialLinks: [
@@ -133,7 +133,7 @@ export const en: PortfolioData = {
       title: "Alejandra Gayral Photography // Professional Portfolio",
       badge: "2025 — Artistic Portfolio",
       tags: ["React", "Tailwind"],
-      image: "imgs/alejandra-gayral-portfolio.png",
+      image: "",
       alt: "Alejandra Gayral - Professional Photography Portfolio",
       description: "Showcase portfolio for photographer Alejandra Gayral with a modern minimalist layout, optimized for high-resolution asset loading.",
       details: {
@@ -141,7 +141,7 @@ export const en: PortfolioData = {
         architecture: "Modern React frontend with progressive loading and responsive design.",
         results: "Fluid presentation of high-resolution images and instant transitions.",
       },
-      demoUrl: "#contact",
+      demoUrl: "",
     },
   ],
 

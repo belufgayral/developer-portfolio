@@ -8,9 +8,35 @@ interface ProjectCardProps {
   project: Project;
 }
 
+function hasValidSource(source: string | undefined): boolean {
+  if (!source?.trim()) return false;
+
+  try {
+    new URL(source, "http://localhost");
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function hasValidDemoUrl(url: string | undefined): boolean {
+  if (!url?.trim()) return false;
+  if (url.startsWith("#")) return url.length > 1;
+
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
 export default function ProjectCard({ project }: ProjectCardProps) {
-  const [imgError, setImgError] = useState(false);
+  const [imgError, setImgError] = useState(
+    !hasValidSource(project.image),
+  );
   const { projectLabels } = useLanguage().data;
+  const hasDemoUrl = hasValidDemoUrl(project.demoUrl);
 
   return (
     <article className="project-card group bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden hover:border-outline-variant/70 transition-all duration-300 flex flex-col">
@@ -108,17 +134,29 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
         {/* Footer links */}
         <div className="flex items-center justify-end pt-4 border-t border-outline-variant/20">
+          {hasDemoUrl ? (
             <a
               className="inline-flex items-center gap-1 font-label-code text-label-code text-on-surface  hover:text-primary transition-colors"
               href={project.demoUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span>{projectLabels.demoLive}</span>
               <span className="material-symbols-outlined text-[16px]">
                 north_east
               </span>
             </a>
+          ) : (
+            <span
+              aria-disabled="true"
+              className="inline-flex items-center gap-1 font-label-code text-label-code text-outline cursor-not-allowed"
+            >
+              <span>{projectLabels.demoLive}</span>
+              <span className="material-symbols-outlined text-[16px]">
+                block
+              </span>
+            </span>
+          )}
         </div>
       </div>
     </article>
