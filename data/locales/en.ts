@@ -18,7 +18,6 @@ export const en: PortfolioData = {
     ],
     cta: "Get in Touch",
     languageLabel: "Language:",
-    terminalStatusAria: "Terminal status",
     menuAria: "Toggle navigation menu",
   },
 
@@ -233,19 +232,8 @@ export const en: PortfolioData = {
     },
   },
 
-  telemetry: {
-    statusPrefix: "SYSTEM // STATUS:",
-    status: "OPERATIONAL",
-    envPrefix: "| NODE_ENV:",
-    nodeEnv: "production",
-    latencyPrefix: "LATENCY:",
-    latency: "14ms",
-    buildPrefix: "BUILD:",
-    build: "v4.8.2",
-  },
-
   footer: {
-    copyright: "© 2025 Fullstack Engineer & Designer. Built with precision.",
+    copyright: "© 2026 Fullstack Engineer & Designer. Built with precision.",
     links: [
       { id: "home", label: "Home" },
       { id: "projects", label: "Projects" },

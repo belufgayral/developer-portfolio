@@ -106,15 +106,6 @@ export default function Navbar() {
             </button>
           </div>
 
-          {/* Trailing Terminal Icon Action */}
-          <a
-            aria-label={navigation.terminalStatusAria}
-            className="w-9 h-9 rounded border border-outline-variant/30 bg-surface-container-low/50 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-outline-variant transition-colors duration-150"
-            href="#terminal-status"
-          >
-            <span className="material-symbols-outlined text-[18px]">terminal</span>
-          </a>
-
           {/* Trailing Primary Action */}
           <a
             className="hidden sm:inline-flex items-center gap-1.5 px-4 py-1.5 rounded-lg bg-inverse-surface text-inverse-on-surface hover:bg-white font-code-md text-code-md font-medium transition-all duration-200 hover:-translate-y-0.5 shadow-sm"

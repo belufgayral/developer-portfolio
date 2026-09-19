@@ -3,7 +3,6 @@ import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
-import TerminalStatus from "@/components/TerminalStatus";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -15,7 +14,6 @@ export default function Home() {
         <Projects />
         <About />
         <Contact />
-        <TerminalStatus />
       </main>
       <Footer />
     </div>

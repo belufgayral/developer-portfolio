@@ -51,7 +51,6 @@ export interface PortfolioData {
     links: NavLink[];
     cta: string;
     languageLabel: string;
-    terminalStatusAria: string;
     menuAria: string;
   };
   availability: {
@@ -143,16 +142,6 @@ export interface PortfolioData {
       feedbackSuccess: string;
       feedbackError: string;
     };
-  };
-  telemetry: {
-    statusPrefix: string;
-    status: string;
-    envPrefix: string;
-    nodeEnv: string;
-    latencyPrefix: string;
-    latency: string;
-    buildPrefix: string;
-    build: string;
   };
   footer: {
     copyright: string;
