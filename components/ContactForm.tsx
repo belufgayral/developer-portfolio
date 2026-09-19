@@ -15,6 +15,7 @@ export default function ContactForm() {
     email: "",
     projectType: form.projectTypeOptions[0]?.value || "fullstack",
     message: "",
+    website: "",
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -44,6 +45,7 @@ export default function ContactForm() {
         email: "",
         projectType: form.projectTypeOptions[0]?.value || "fullstack",
         message: "",
+        website: "",
       });
 
       setTimeout(() => {
@@ -60,6 +62,18 @@ export default function ContactForm() {
   return (
     <div className="bg-surface-container-low p-8 rounded-2xl border border-outline-variant/30 shadow-xl">
       <form className="space-y-6" onSubmit={handleSubmit}>
+        <input
+          aria-hidden="true"
+          autoComplete="off"
+          className="absolute -left-[9999px] h-px w-px opacity-0"
+          name="website"
+          tabIndex={-1}
+          type="text"
+          value={formData.website}
+          onChange={(e) =>
+            setFormData({ ...formData, website: e.target.value })
+          }
+        />
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Name Input */}
           <div className="space-y-2">
