@@ -18,7 +18,6 @@ export interface Project {
   alt: string;
   description: string;
   details: ProjectDetail;
-  repoUrl?: string;
   demoUrl: string;
 }
 
@@ -101,7 +100,6 @@ export interface PortfolioData {
     challenge: string;
     architecture: string;
     results: string;
-    repoTitle: string;
     demoLive: string;
     placeholderImageText: string;
   };

@@ -78,7 +78,6 @@ export const es: PortfolioData = {
     challenge: "Desafío:",
     architecture: "Arquitectura:",
     results: "Resultados:",
-    repoTitle: "Ver repositorio de código",
     demoLive: "Demo Live",
     placeholderImageText: "¡Próximamente! Proyecto en construcción.",
   },

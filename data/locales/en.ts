@@ -78,7 +78,6 @@ export const en: PortfolioData = {
     challenge: "Challenge:",
     architecture: "Architecture:",
     results: "Results:",
-    repoTitle: "View code repository",
     demoLive: "Live Demo",
     placeholderImageText: "Coming soon! Project under construction.",
   },
