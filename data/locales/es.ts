@@ -129,7 +129,7 @@ export const es: PortfolioData = {
     {
       id: "photographer-portfolio",
       title: "Alejandra Gayral Fotografía // Portfolio de fotógrafa profesional",
-      badge: "2025 — Portfolio artístico",
+      badge: "2026 — Portfolio artístico",
       tags: ["React", "Tailwind"],
       image: "",
       alt: "Alejandra Gayral - Portfolio de fotógrafa profesional",

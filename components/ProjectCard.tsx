@@ -35,6 +35,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const [imgError, setImgError] = useState(
     !hasValidSource(project.image),
   );
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
   const { projectLabels } = useLanguage().data;
   const hasDemoUrl = hasValidDemoUrl(project.demoUrl);
 
@@ -91,44 +92,57 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </h3>
 
           {/* Collapsible Details */}
-          <details className="group/detail text-on-surface-variant font-body-md text-body-md mb-6 transition-all duration-300">
-            <summary className="details-toggle cursor-pointer list-none inline-flex items-center gap-1 font-label-code text-label-code text-primary focus:outline-none mb-3 py-1">
-              <span className="group-open/detail:hidden inline-flex items-center gap-1">
+          <div className="text-on-surface-variant font-body-md text-body-md mb-6">
+            <button
+              aria-controls={`project-details-${project.id}`}
+              aria-expanded={isDetailsOpen}
+              className={`details-toggle cursor-pointer inline-flex items-center gap-1 font-label-code text-label-code text-primary focus:outline-none py-1 ${
+                isDetailsOpen ? "is-expanded" : ""
+              }`}
+              onClick={() => setIsDetailsOpen((isOpen) => !isOpen)}
+              type="button"
+            >
+              <span className={isDetailsOpen ? "hidden" : "inline-flex"}>
                 {projectLabels.expandDetails}
               </span>
-              <span className="hidden group-open/detail:inline-flex items-center gap-1">
+              <span className={isDetailsOpen ? "inline-flex" : "hidden"}>
                 {projectLabels.collapseDetails}
               </span>
               <span className="details-chevron material-symbols-outlined text-[16px]">
                 expand_more
               </span>
-            </summary>
-            <div className="space-y-3 pt-2 text-body-sm font-body-sm text-outline border-t border-outline-variant/20">
-              <p className="text-body-md text-on-surface-variant">
-                {project.description}
-              </p>
-              <div className="p-4 rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-2">
-                <p>
-                  <strong className="text-on-surface font-code-md text-code-md">
-                    {projectLabels.challenge}
-                  </strong>{" "}
-                  {project.details.challenge}
+            </button>
+            <div
+              className={`details-content ${isDetailsOpen ? "is-expanded" : ""}`}
+              id={`project-details-${project.id}`}
+            >
+              <div className="details-content-inner space-y-3 pt-2 text-body-sm font-body-sm text-outline border-t border-outline-variant/20">
+                <p className="text-body-md text-on-surface-variant">
+                  {project.description}
                 </p>
-                <p>
-                  <strong className="text-on-surface font-code-md text-code-md">
-                    {projectLabels.architecture}
-                  </strong>{" "}
-                  {project.details.architecture}
-                </p>
-                <p>
-                  <strong className="text-on-surface font-code-md text-code-md">
-                    {projectLabels.results}
-                  </strong>{" "}
-                  {project.details.results}
-                </p>
+                <div className="p-4 rounded-lg bg-surface-container-lowest border border-outline-variant/20 space-y-2">
+                  <p>
+                    <strong className="text-on-surface font-code-md text-code-md">
+                      {projectLabels.challenge}
+                    </strong>{" "}
+                    {project.details.challenge}
+                  </p>
+                  <p>
+                    <strong className="text-on-surface font-code-md text-code-md">
+                      {projectLabels.architecture}
+                    </strong>{" "}
+                    {project.details.architecture}
+                  </p>
+                  <p>
+                    <strong className="text-on-surface font-code-md text-code-md">
+                      {projectLabels.results}
+                    </strong>{" "}
+                    {project.details.results}
+                  </p>
+                </div>
               </div>
             </div>
-          </details>
+          </div>
         </div>
 
         {/* Footer links */}

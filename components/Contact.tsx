@@ -11,7 +11,7 @@ export default function Contact() {
   return (
     <section
       ref={elementRef}
-      className={`reveal max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-outline-variant/20 ${
+      className={`reveal max-w-7xl mx-auto px-6 md:px-12 py-20 ${
         isVisible ? "is-visible" : ""
       }`}
       id="contact"
@@ -47,6 +47,27 @@ export default function Contact() {
                 </div>
                 <div className="font-code-md text-code-md text-on-surface group-hover:text-primary transition-colors">
                   {email}
+                </div>
+              </div>
+            </a>
+
+            <a
+              className="flex items-center gap-3 p-3 rounded-lg bg-surface-container-low border border-outline-variant/30 hover:border-secondary/50 transition-colors group"
+              href="https://wa.me/542494585850"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <div className="w-9 h-9 rounded bg-surface-container-high flex items-center justify-center text-secondary">
+                <span className="material-symbols-outlined text-[18px]">
+                  chat
+                </span>
+              </div>
+              <div>
+                <div className="font-label-code text-label-code text-outline">
+                  WhatsApp
+                </div>
+                <div className="font-code-md text-code-md text-on-surface group-hover:text-secondary transition-colors">
+                  +54 2494 585850
                 </div>
               </div>
             </a>
