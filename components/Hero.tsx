@@ -24,7 +24,7 @@ export default function Hero() {
       id="home"
     >
       {/* Live Availability Tag */}
-      <div className="inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 mb-8 backdrop-blur-sm">
+      <div className="hero-stagger inline-flex items-center gap-2.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/40 mb-8 backdrop-blur-sm">
         <span className="relative flex h-2 w-2">
           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75" />
           <span className="relative inline-flex rounded-full h-2 w-2 bg-secondary" />
@@ -40,21 +40,21 @@ export default function Hero() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         {/* Hero Text & CTA Block (7 cols) */}
         <div className="lg:col-span-7 flex flex-col items-start space-y-6">
-          <h1 className="font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface tracking-tight leading-tight">
+          <h1 className="hero-stagger [animation-delay:120ms] font-display-hero-mobile md:font-display-hero text-display-hero-mobile md:text-display-hero text-on-surface tracking-tight leading-tight">
             {headline.body}{" "}
             <span className="text-primary italic font-light">
               {headline.highlight}
             </span>{" "}
             {headline.end}
           </h1>
-          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
+          <p className="hero-stagger [animation-delay:200ms] font-body-lg text-body-lg text-on-surface-variant max-w-2xl leading-relaxed">
             {bio.body}{" "}
             <span className="text-on-surface font-medium">{bio.tech}</span>{" "}
             {bio.end}
           </p>
 
           {/* Action Buttons Group */}
-          <div className="flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
+          <div className="hero-stagger [animation-delay:280ms] flex flex-wrap items-center gap-4 pt-2 w-full sm:w-auto">
             <a
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-on-surface text-background font-medium hover:bg-white transition-all duration-200 hover:-translate-y-0.5 shadow-lg shadow-primary/5"
               href="#projects"
@@ -78,7 +78,7 @@ export default function Hero() {
         </div>
 
         {/* Hero Photo & Editorial Frame (5 cols) */}
-        <div className="lg:col-span-5 flex justify-center lg:justify-end">
+        <div className="hero-image-enter lg:col-span-5 flex justify-center lg:justify-end">
           <div className="relative w-full max-w-sm">
             {/* Subtle Glow behind image */}
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-primary-container/20 to-secondary/15 blur-xl opacity-70" />

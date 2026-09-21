@@ -1,17 +1,22 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
+import { useReveal } from "./useReveal";
 
 export default function About() {
   const { sections, manifesto, skillCategories } = useLanguage().data;
+  const { elementRef, isVisible } = useReveal<HTMLElement>();
 
   return (
     <section
-      className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-outline-variant/20"
+      ref={elementRef}
+      className={`reveal max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-outline-variant/20 ${
+        isVisible ? "is-visible" : ""
+      }`}
       id="about"
     >
       {/* Section Header */}
-      <div className="mb-12">
+      <div className="reveal-child mb-12">
         <div className="font-label-code text-label-code text-primary uppercase tracking-widest mb-2 flex items-center gap-2">
           <span className="w-1.5 h-1.5 rounded-full bg-primary" />
           {sections.about.kicker}
@@ -22,9 +27,9 @@ export default function About() {
       </div>
 
       {/* Bento Grid for Profile Manifesto and Skills Matrix */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div className="reveal-child grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Manifesto Card (5 cols) */}
-        <div className="lg:col-span-5 bg-surface-container-low rounded-2xl p-8 border border-outline-variant/30 flex flex-col justify-between">
+        <div className="reveal-child lg:col-span-5 bg-surface-container-low rounded-2xl p-8 border border-outline-variant/30 flex flex-col justify-between">
           <div className="space-y-4">
             <span className="font-code-md text-code-md text-secondary">
               {manifesto.title}
@@ -71,7 +76,7 @@ export default function About() {
           {skillCategories.map((category) => (
             <div
               key={category.title}
-              className="bg-surface-container-low rounded-xl p-6 border border-outline-variant/30"
+              className="reveal-child bg-surface-container-low rounded-xl p-6 border border-outline-variant/30"
             >
               <div className="flex items-center gap-2 mb-4">
                 <span

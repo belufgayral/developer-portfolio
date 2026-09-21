@@ -39,7 +39,9 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const hasDemoUrl = hasValidDemoUrl(project.demoUrl);
 
   return (
-    <article className="project-card group bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden hover:border-outline-variant/70 transition-all duration-300 flex flex-col">
+    <article
+      className="reveal-child project-card group bg-surface-container-low rounded-2xl border border-outline-variant/30 overflow-hidden hover:border-outline-variant/70 transition-all duration-300 flex flex-col"
+    >
       {/* Media frame */}
       <div className="relative h-60 bg-surface-container-high overflow-hidden border-b border-outline-variant/20 flex items-center justify-center">
         {!imgError ? (
@@ -90,18 +92,15 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
           {/* Collapsible Details */}
           <details className="group/detail text-on-surface-variant font-body-md text-body-md mb-6 transition-all duration-300">
-            <summary className="cursor-pointer list-none inline-flex items-center gap-1 font-label-code text-label-code text-primary hover:underline focus:outline-none mb-3 py-1">
+            <summary className="details-toggle cursor-pointer list-none inline-flex items-center gap-1 font-label-code text-label-code text-primary focus:outline-none mb-3 py-1">
               <span className="group-open/detail:hidden inline-flex items-center gap-1">
-                {projectLabels.expandDetails}{" "}
-                <span className="material-symbols-outlined text-[16px]">
-                  expand_more
-                </span>
+                {projectLabels.expandDetails}
               </span>
               <span className="hidden group-open/detail:inline-flex items-center gap-1">
-                {projectLabels.collapseDetails}{" "}
-                <span className="material-symbols-outlined text-[16px]">
-                  expand_less
-                </span>
+                {projectLabels.collapseDetails}
+              </span>
+              <span className="details-chevron material-symbols-outlined text-[16px]">
+                expand_more
               </span>
             </summary>
             <div className="space-y-3 pt-2 text-body-sm font-body-sm text-outline border-t border-outline-variant/20">

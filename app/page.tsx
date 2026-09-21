@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="bg-background text-on-surface min-h-screen flex flex-col relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+    <div className="bg-background text-on-surface min-h-screen flex flex-col relative overflow-x-clip selection:bg-primary-container selection:text-on-primary-container">
       <Navbar />
       <main className="flex-grow pt-16 bg-grid-subtle">
         <Hero />

@@ -1,13 +1,20 @@
 "use client";
 
 import { useLanguage } from "@/context/LanguageContext";
+import { useReveal } from "./useReveal";
 
 export default function Footer() {
   const { brand, footer } = useLanguage().data;
+  const { elementRef, isVisible } = useReveal<HTMLElement>();
 
   return (
-    <footer className="w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20">
-      <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+    <footer
+      ref={elementRef}
+      className={`reveal w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 ${
+        isVisible ? "is-visible" : ""
+      }`}
+    >
+      <div className="reveal-child max-w-7xl mx-auto px-6 md:px-12 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
         {/* Brand & Copyright */}
         <div className="flex flex-col sm:flex-row items-center gap-3 text-center sm:text-left">
           <span className="font-code-md text-code-md text-on-surface font-semibold">

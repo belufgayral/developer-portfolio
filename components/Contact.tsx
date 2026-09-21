@@ -2,18 +2,23 @@
 
 import { useLanguage } from "@/context/LanguageContext";
 import ContactForm from "./ContactForm";
+import { useReveal } from "./useReveal";
 
 export default function Contact() {
   const { sections, contact, email, location, socialLinks } = useLanguage().data;
+  const { elementRef, isVisible } = useReveal<HTMLElement>();
 
   return (
     <section
-      className="max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-outline-variant/20"
+      ref={elementRef}
+      className={`reveal max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-outline-variant/20 ${
+        isVisible ? "is-visible" : ""
+      }`}
       id="contact"
     >
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <div className="reveal-child grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Left Column: Contact Heading & Direct Links (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="reveal-child lg:col-span-5 space-y-6">
           <div className="font-label-code text-label-code text-primary uppercase tracking-widest flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-primary" />
             {sections.contact.kicker}
@@ -88,7 +93,7 @@ export default function Contact() {
         </div>
 
         {/* Right Column: Interactive Contact Form (7 cols) */}
-        <div className="lg:col-span-7">
+        <div className="reveal-child lg:col-span-7">
           <ContactForm />
         </div>
       </div>
