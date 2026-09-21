@@ -5,7 +5,7 @@ import { useReveal } from "./useReveal";
 
 export default function Footer() {
   const { brand, footer } = useLanguage().data;
-  const { elementRef, isVisible } = useReveal<HTMLElement>();
+  const { elementRef, isVisible } = useReveal<HTMLElement>("#contact");
 
   return (
     <footer

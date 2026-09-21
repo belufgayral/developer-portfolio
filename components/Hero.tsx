@@ -20,7 +20,7 @@ export default function Hero() {
 
   return (
     <section
-      className="relative max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-20 md:pb-28"
+      className="relative max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-20 md:pb-28 scroll-mt-20"
       id="home"
     >
       {/* Live Availability Tag */}
