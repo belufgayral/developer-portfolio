@@ -10,7 +10,7 @@ export default function Footer() {
   return (
     <footer
       ref={elementRef}
-      className={`reveal w-full bg-surface-container-lowest dark:bg-surface-container-lowest border-t border-outline-variant/20 ${
+      className={`reveal w-full bg-surface-container-lowest dark:bg-surface-container-lowest ${
         isVisible ? "is-visible" : ""
       }`}
     >

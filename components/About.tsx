@@ -10,7 +10,7 @@ export default function About() {
   return (
     <section
       ref={elementRef}
-      className={`reveal max-w-7xl mx-auto px-6 md:px-12 py-20 border-t border-outline-variant/20 ${
+      className={`reveal max-w-7xl mx-auto px-6 md:px-12 py-20 ${
         isVisible ? "is-visible" : ""
       }`}
       id="about"

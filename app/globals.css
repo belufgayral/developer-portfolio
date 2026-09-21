@@ -263,6 +263,10 @@ body {
 }
 
 .details-toggle {
+  border: 0;
+  padding-right: 0;
+  padding-left: 0;
+  background: transparent;
   transition: transform 500ms ease;
   transform-origin: left center;
 }
@@ -275,8 +279,26 @@ body {
   transition: transform 650ms ease;
 }
 
-details[open] .details-chevron {
+.details-toggle.is-expanded .details-chevron {
   transform: rotate(180deg);
+}
+
+.details-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 750ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease;
+}
+
+.details-content.is-expanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.details-content-inner {
+  min-height: 0;
+  overflow: hidden;
 }
 
 .hero-stagger {

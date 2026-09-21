@@ -167,7 +167,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className={`w-full py-3.5 px-6 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-0.5 shadow-md shadow-primary/10 ${
+          className={`w-full py-3.5 px-6 rounded-lg cursor-pointer font-medium transition-all duration-200 flex items-center justify-center gap-2 hover:-translate-y-0.5 shadow-md shadow-primary/10 ${
             isSuccess
               ? "bg-secondary text-on-secondary"
               : "bg-on-surface text-background hover:bg-white disabled:opacity-70 disabled:cursor-not-allowed"
